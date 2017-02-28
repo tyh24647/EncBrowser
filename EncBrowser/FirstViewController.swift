@@ -12,7 +12,12 @@ class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        //let fileBrowser = FileBrowser()
+        //self.view = fileBrowser.view
+        //self.present(fileBrowser, animated: true, completion: nil)
+        //self.present(FileBrowser(initialPath: NSURL(fileURLWithPath: "/") as URL), animated: true, completion: nil)
+
     }
 
     override func didReceiveMemoryWarning() {
