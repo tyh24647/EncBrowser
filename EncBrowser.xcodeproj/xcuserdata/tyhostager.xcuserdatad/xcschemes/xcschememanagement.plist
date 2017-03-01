@@ -3,13 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>SchemeUserState</key>
-	<dict>
-		<key>EncBrowser.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
-		</dict>
-	</dict>
+	<dict />
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>1A050D9E1E64F95D003622BF</key>

@@ -15,8 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        //window?.rootViewController?.present(FileBrowser(), animated: false, completion: nil)
+
+        /*
+        window?.rootViewController?.present(
+                FileBrowser(initialPath: NSURL(fileURLWithPath: FileManager.default.currentDirectoryPath, isDirectory: true) as URL),
+                animated: true,
+                completion: nil
+        )
+        */
         
         return true
     }
