@@ -21,11 +21,18 @@ class SettingsTableViewController: UITableViewController {
     let kMiscellaneous = "Misc"
     let kReuseIdentifier = "SettingsCell"
     let kDefaultRowHeight: CGFloat = 60
-    let kDefaultHeaderHeight: CGFloat = 20
-    let dataNames = DataNames()
+    let kDefaultHeaderHeight: CGFloat = 30
+    let dataNames = DataNames.namesList
 
     // MARK: - VARS
-    var data: [String]!
+    private var _data: [String]?
+    var data: [String]! {
+        get {
+            return _data ?? [String]()
+        } set {
+            _data = newValue ?? self._data ?? [String]()
+        }
+    }
 
     // MARK: - ENUMS
     enum SettingsType {
@@ -48,8 +55,10 @@ class SettingsTableViewController: UITableViewController {
             self.init(rawValue: rawValue)
         }
 
-        static func getSize() -> Int {
-            return 4
+        static var size: Int {
+            get {
+                return 4
+            }
         }
     }
 
@@ -63,27 +72,31 @@ class SettingsTableViewController: UITableViewController {
         static let DeleteAllData = "Delete All Data"
         static let About = "About"
         
-        func getNamesLst() -> [String] {
-            var tmp = [String]()
-            tmp.append(DataNames.Profile)
-            tmp.append(DataNames.Notifications)
-            tmp.append(DataNames.LockOptions)
-            tmp.append(DataNames.ViewOptions)
-            tmp.append(DataNames.ResetOptions)
-            tmp.append(DataNames.DeleteAllData)
-            tmp.append(DataNames.About)
-            return tmp
+        static var namesList: [String] {
+            get {
+                return [
+                        DataNames.Profile,
+                        DataNames.Notifications,
+                        DataNames.LockOptions,
+                        DataNames.ViewOptions,
+                        DataNames.ResetOptions,
+                        DataNames.DeleteAllData,
+                        DataNames.About
+                ]
+            }
         }
     }
 
     // MARK: - OVERRIDE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
-        Log.d(withMessage: "Initializing table view...")
-        self.tableView = tView
-        Log.d(withMessage: "Table view loaded successfully")
-        self.navigationController?.title = kTitle
         self.navigationItem.title = kTitle
+
+        Log.d(withMessage: "Initializing table view...")
+        self.tableView = tView ?? UITableView(frame: self.view!.frame, style: .plain)
+        Log.d(withMessage: "Table view loaded successfully")
+
+        // set table data
         Log.d(withMessage: "Generating table data...")
         data = generateDefaultOptionsData()
         if data == nil {
@@ -92,14 +105,15 @@ class SettingsTableViewController: UITableViewController {
             data = [String]()
         }
 
-        Log.d(withMessage: "Registering cells for reuse with identifier \(kReuseIdentifier)")
+        // register nib for reuse
+        Log.d(withMessage: "Registering cells for reuse with identifier \'\(kReuseIdentifier)\'")
         self.tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: kReuseIdentifier)
+        Log.d(withMessage: "Settings table view controller loaded successfully")
     }
 
     fileprivate func generateDefaultOptionsData() -> [String] {
         var tmp = [String]()
-
-        for var name in DataNames().getNamesLst() {
+        for var name in DataNames.namesList {
             name = name as String!
             tmp.append(name)
         }
@@ -110,9 +124,11 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = self.tView.dequeueReusableCell(withIdentifier: kReuseIdentifier, for: indexPath) as UITableViewCell?
         if cell != nil {
-            cell?.textLabel!.text = self.data[indexPath.row]
+            var cellName = self.data[indexPath.row]
+            cellName = cellName.isEmpty ? "(NULL)" : cellName
+            cell?.textLabel!.text = cellName
 
-            switch self.data[indexPath.row] {
+            switch cellName {
             case DataNames.Profile, DataNames.About, DataNames.Notifications, DataNames.LockOptions:
                 cell?.accessoryType = .disclosureIndicator
                 break
@@ -123,9 +139,12 @@ class SettingsTableViewController: UITableViewController {
                 cell?.accessoryType = .none
                 break
             }
+
+
         } else {
             Log.e(withErrorMsg: "Could not load UITableViewCell with identifier: '\(kReuseIdentifier)'")
             Log.d(withMessage: "Skipping procedure")
+
             cell = UITableViewCell(style: .default, reuseIdentifier: "FileTableViewCell")
             if cell != nil {
                 cell!.textLabel!.text = self.data[indexPath.row]
@@ -136,27 +155,18 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var headerTitle = ""
-
         switch section {
         case PrefsSections.userPrefs.rawValue:
-            headerTitle = kUserPrefs
-            break
+            return kUserPrefs
         case PrefsSections.dataPrefs.rawValue:
-            headerTitle = kDataPrefs
-            break
+            return kDataPrefs
         case PrefsSections.other.rawValue:
-            headerTitle = kOtherPrefs
-            break
+            return kOtherPrefs
         case PrefsSections.misc.rawValue:
-            headerTitle = kMiscellaneous
-            break
+            return kMiscellaneous
         default:
-            headerTitle = kMiscellaneous
-            break
+            return nil
         }
-
-        return headerTitle
     }
 
     override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
@@ -177,30 +187,22 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var numRows = 0
-
         switch section {
         case PrefsSections.userPrefs.rawValue:
-            numRows = 4
-            break
+            return 4
         case PrefsSections.dataPrefs.rawValue:
-            numRows = 2
-            break
+            return 2
         case PrefsSections.other.rawValue:
-            numRows = 1
-            break
+            return 1
         case PrefsSections.misc.rawValue:
-            numRows = 0
-            break
+            return 0
         default:
-            break
+            return 0
         }
-
-        return numRows
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return PrefsSections.getSize()
+        return PrefsSections.size
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -224,6 +226,7 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+
     }
 
     override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
