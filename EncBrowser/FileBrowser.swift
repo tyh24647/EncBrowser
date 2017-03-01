@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 open class FileBrowser: UINavigationController {
 
     // init parser from shared instance
@@ -66,7 +65,6 @@ open class FileBrowser: UINavigationController {
     ///
     public convenience init(initialPath: URL) {
         let fileListViewController = FileListViewController(withInitialPath: initialPath)
-        //self.init(rootViewController: fileListViewController)
         self.init(nibName: "FileBrowserViewController.xib", bundle: Bundle(for: FileBrowser.self))
         self.view.backgroundColor = UIColor.white
         self.fileList = fileListViewController

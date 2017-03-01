@@ -8,16 +8,19 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class FirstViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //let fileBrowser = FileBrowser()
         //self.view = fileBrowser.view
+        
+        self.navigationItem.title = "My Files"
+        
         //self.present(fileBrowser, animated: true, completion: nil)
         //self.present(FileBrowser(initialPath: NSURL(fileURLWithPath: "/") as URL), animated: true, completion: nil)
-
+        
     }
 
     override func didReceiveMemoryWarning() {
