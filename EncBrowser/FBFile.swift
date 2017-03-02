@@ -124,7 +124,7 @@ func checkDirectory(atFilePath filePath: URL) -> Bool {
         }
     } catch {
         #if DEBUG
-            Log.e(withErrorMsg: "Unable to locate the file or directory at the specified path")
+            Log.ERROR(withErrorMsg: "Unable to locate the file or directory at the specified path")
         #endif
     }
     
@@ -147,7 +147,7 @@ func getFileAttributes(atFilePath filePath: URL) -> NSDictionary? {
         return attributes
     } catch {
         #if DEBUG
-            Log.e(withErrorMsg: "Unable to locate the file or directory at the specified path")
+            Log.ERROR(withErrorMsg: "Unable to locate the file or directory at the specified path")
         #endif
     }
     

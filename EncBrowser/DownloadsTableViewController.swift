@@ -10,11 +10,46 @@ class DownloadsTableViewController: UITableViewController {
 
     let kDefaultRowHeight: CGFloat = 60
     let kDefaultHeaderHeight: CGFloat = 20
+    let kDownloadCell = "DownloadCell"
+    let kFileCell = "FileCell"
 
+    private var _data: [String]?
+    var data: [String]! {
+        get {
+            return _data ?? [String]()
+        } set {
+            _data = newValue ?? self._data ?? [String]()
+        }
+    }
+
+    private var _dataTypes: [FileType]!
+    var dataTypes: [FileType]! {
+        get {
+            return _dataTypes ?? [FileType]()
+        } set {
+            _dataTypes = newValue ?? self.dataTypes ?? [FileType]()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Downloads"
+        self.tableView = tView
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: kDownloadCell, for: indexPath) as UITableViewCell!
+
+        if cell != nil {
+            let cellStr = self.data[indexPath.row]
+
+
+
+            cell?.textLabel!.text = self.data[indexPath.row]
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: kFileCell, for: indexPath)
+        }
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -90,9 +125,6 @@ class DownloadsTableViewController: UITableViewController {
         return super.tableView(tableView, numberOfRowsInSection: section)
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return super.tableView(tableView, cellForRowAt: indexPath)
-    }
 
     override func numberOfSections(`in` tableView: UITableView) -> Int {
         return 0

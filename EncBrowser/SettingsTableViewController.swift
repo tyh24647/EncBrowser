@@ -10,41 +10,35 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
-    // MARK: - OUTLETS
+    // MARK: - STORYBOARD USER INTERFACE OUTLET CONNECTIONS
     @IBOutlet weak var tView: UITableView!
 
+    // MARK: - STATIC CONSTANTS
+    static let kDefaultPrefsSectionsSize = 4 as Int
+
     // MARK: - CONSTANTS
+    let kEmptyStrArrPlaceholder = [String]()
     let kTitle = "Settings"
     let kUserPrefs = "User Preferences"
     let kDataPrefs = "Data Management"
     let kOtherPrefs = "Other"
     let kMiscellaneous = "Misc"
     let kReuseIdentifier = "SettingsCell"
-    let kDefaultRowHeight: CGFloat = 60
+    let kDefaultRowHeight:CGFloat = 60
     let kDefaultHeaderHeight: CGFloat = 30
     let dataNames = DataNames.namesList
 
-    // MARK: - VARS
+    // MARK: - INIT VARIABLES
     private var _data: [String]?
     var data: [String]! {
         get {
-            return _data ?? [String]()
+            return _data ?? self.kEmptyStrArrPlaceholder
         } set {
             _data = newValue ?? self._data ?? [String]()
         }
     }
 
-    // MARK: - ENUMS
-    enum SettingsType {
-        case profile
-        case notifications
-        case lockOptions
-        case viewOptions
-        case resetOptions
-        case deleteAllData
-        case about
-    }
-
+    // MARK: - ENUMERATIONS
     enum PrefsSections: Int {
         case userPrefs = 0
         case dataPrefs = 1
@@ -55,9 +49,10 @@ class SettingsTableViewController: UITableViewController {
             self.init(rawValue: rawValue)
         }
 
-        static var size: Int {
+        private static var _size: Int?
+        static var size: Int! {
             get {
-                return 4
+                return self._size ?? kDefaultPrefsSectionsSize
             }
         }
     }
@@ -87,30 +82,9 @@ class SettingsTableViewController: UITableViewController {
         }
     }
 
-    // MARK: - OVERRIDE METHODS
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.navigationItem.title = kTitle
-
-        Log.d(withMessage: "Initializing table view...")
-        self.tableView = tView ?? UITableView(frame: self.view!.frame, style: .plain)
-        Log.d(withMessage: "Table view loaded successfully")
-
-        // set table data
-        Log.d(withMessage: "Generating table data...")
-        data = generateDefaultOptionsData()
-        if data == nil {
-            Log.e(withErrorMsg: "Unable to generate data for settings table")
-            Log.d(withMessage: "Skipping procedure")
-            data = [String]()
-        }
-
-        // register nib for reuse
-        Log.d(withMessage: "Registering cells for reuse with identifier \'\(kReuseIdentifier)\'")
-        self.tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: kReuseIdentifier)
-        Log.d(withMessage: "Settings table view controller loaded successfully")
-    }
-
+    /// Initializes the list of options using the default values from the DataNames struct
+    ///
+    /// - Returns: The resulting list of String objects
     fileprivate func generateDefaultOptionsData() -> [String] {
         var tmp = [String]()
         for var name in DataNames.namesList {
@@ -119,6 +93,29 @@ class SettingsTableViewController: UITableViewController {
         }
 
         return tmp.count > 0 ? tmp : [String]()
+    }
+
+    // MARK: - OVERRIDE METHODS
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationItem.title = kTitle
+
+        self.tableView = self.tView ?? UITableView(frame: self.view!.frame, style: .plain)
+
+        // set table data
+        Log.DEBUG(withMessage: "Generating table data...")
+        data = generateDefaultOptionsData()
+        if data == nil {
+            Log.ERROR(withErrorMsg: "Unable to generate data for settings table")
+            Log.DEBUG(withMessage: "Skipping procedure -> assigning default value of '\([String]())'")
+            data = [String]()
+        }
+
+        // register nib for reuse
+        Log.DEBUG(withMessage: "Registering cells for reuse with identifier \'\(kReuseIdentifier)\'")
+        self.tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: kReuseIdentifier)
+
+        Log.DEBUG(withMessage: "Settings table view controller loaded successfully")
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -139,11 +136,9 @@ class SettingsTableViewController: UITableViewController {
                 cell?.accessoryType = .none
                 break
             }
-
-
         } else {
-            Log.e(withErrorMsg: "Could not load UITableViewCell with identifier: '\(kReuseIdentifier)'")
-            Log.d(withMessage: "Skipping procedure")
+            Log.ERROR(withErrorMsg: "Could not load UITableViewCell with identifier: '\(kReuseIdentifier)'")
+            Log.DEBUG(withMessage: "Skipping procedure")
 
             cell = UITableViewCell(style: .default, reuseIdentifier: "FileTableViewCell")
             if cell != nil {

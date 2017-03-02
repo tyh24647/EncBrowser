@@ -13,21 +13,24 @@ public class Log {
     init() {
         // do nothing for now
     }
-    
-    static func d(withMessage message: String) -> Void {
+
+    static func DEBUG(withMessage message: String) -> Void {
+#if DEBUG
         if message.isEmpty || message == "" {
             return
         }
-        
+
         print("> " + message)
+#endif
     }
-    
-    static func e(withErrorMsg errorMsg: String) -> Void {
+
+    static func ERROR(withErrorMsg errorMsg: String) -> Void {
+#if DEBUG
         if errorMsg.isEmpty || errorMsg == "" {
             return
         }
-        
+
         print("> \tERROR: " + errorMsg)
+#endif
     }
-    
 }

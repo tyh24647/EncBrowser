@@ -34,6 +34,7 @@
 		1A2BC0241E657636009B2134 /* WebviewPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC00F1E657636009B2134 /* WebviewPreviewViewController.swift */; };
 		1AE843E11E663D0800647A28 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE843DF1E663D0800647A28 /* SettingsTableViewCell.swift */; };
 		1AE843E21E663D0800647A28 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AE843E01E663D0800647A28 /* SettingsTableViewCell.xib */; };
+		B3BB4370A7DE00C499C191F5 /* FileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BB4F66FDA25071D290C099 /* FileType.swift */; };
 		B3BB454C38A5936AA615D7E8 /* DownloadsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BB4E15EEEFF6D69FDE44A8 /* DownloadsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		1AE843DF1E663D0800647A28 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		1AE843E01E663D0800647A28 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		B3BB4E15EEEFF6D69FDE44A8 /* DownloadsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadsTableViewController.swift; sourceTree = "<group>"; };
+		B3BB4F66FDA25071D290C099 /* FileType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +210,7 @@
 			children = (
 				1A2BC0001E657636009B2134 /* FBFile.swift */,
 				1A2BC00B1E657636009B2134 /* PreviewItem.swift */,
+				B3BB4F66FDA25071D290C099 /* FileType.swift */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				1A050DA51E64F95E003622BF /* FirstViewController.swift in Sources */,
 				1A2BC01C1E657636009B2134 /* FileParser.swift in Sources */,
 				B3BB454C38A5936AA615D7E8 /* DownloadsTableViewController.swift in Sources */,
+				B3BB4370A7DE00C499C191F5 /* FileType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

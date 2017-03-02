@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--First View Controller-->
+        <!--Files-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="EncBrowser" customModuleProvider="target" sceneMemberID="viewController">
@@ -28,13 +28,13 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" id="TpQ-HY-Ibp"/>
+                    <navigationItem key="navigationItem" title="Files" id="TpQ-HY-Ibp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2026" y="-738"/>
         </scene>
-        <!--Settings Table View Controller-->
+        <!--Settings-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SettingsTableViewController" customModule="EncBrowser" customModuleProvider="target" sceneMemberID="viewController">
@@ -53,14 +53,14 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" id="9nz-Bl-FUu"/>
+                    <navigationItem key="navigationItem" title="Settings" id="9nz-Bl-FUu"/>
                     <connections>
                         <outlet property="tView" destination="gkE-mM-IsU" id="g7b-js-cFA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1776.8" y="956.67166416791611"/>
+            <point key="canvasLocation" x="1132" y="779"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -71,6 +71,7 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.3562921818" green="0.58085937129999998" blue="0.68726851850000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="qDf-PF-8Aj" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
@@ -80,12 +81,12 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-190" y="-63"/>
         </scene>
         <!--Downloads-->
         <scene sceneID="eaW-q0-z6w">
             <objects>
-                <tableViewController title="Downloads" id="lxm-nP-IC8" customClass="DownloadsTableViewController" customModule="EncBrowser" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="lxm-nP-IC8" customClass="DownloadsTableViewController" customModule="EncBrowser" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="EH4-nr-O38">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -105,14 +106,14 @@
                             <outlet property="delegate" destination="lxm-nP-IC8" id="O0e-6t-nws"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="zcC-cm-6eT"/>
+                    <navigationItem key="navigationItem" title="Downloads" id="zcC-cm-6eT"/>
                     <connections>
                         <outlet property="tView" destination="EH4-nr-O38" id="C2a-Jh-5Ql"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fv-cP-p51" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2068" y="68"/>
+            <point key="canvasLocation" x="1983" y="37"/>
         </scene>
         <!--Files-->
         <scene sceneID="OEM-e4-y4C">
@@ -120,9 +121,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qDf-PF-8Aj" customClass="FileBrowser" customModule="EncBrowser" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Files" image="folder-7" id="acW-dT-cKf"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GBF-uX-HS8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GBF-uX-HS8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.41583454809999998" green="0.68082293469999999" blue="0.79835069439999995" alpha="0.44634703199999998" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -139,9 +141,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LeG-UN-Hvy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="more" id="cPa-gy-q4n"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UGO-38-j1e">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UGO-38-j1e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.41583454809999998" green="0.68082293469999999" blue="0.79835069439999995" alpha="0.44634703199999998" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -150,17 +153,21 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RdW-C6-4My" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="837.60000000000002" y="956.67166416791611"/>
+            <point key="canvasLocation" x="210" y="742"/>
         </scene>
-        <!--Downloads-->
+        <!--\-->
         <scene sceneID="keO-0P-j0w">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pds-B0-FHe" sceneMemberID="viewController">
+                <navigationController title="\" automaticallyAdjustsScrollViewInsets="NO" id="Pds-B0-FHe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Downloads" image="download-7" id="XxI-xO-UrU"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YCs-WI-iQP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.41583454809999998" green="0.68082293469999999" blue="0.79835069439999995" alpha="0.44634703199999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="0.99917313139999997" blue="0.96920784790000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -169,11 +176,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xjq-hc-aME" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="68"/>
+            <point key="canvasLocation" x="919" y="90"/>
         </scene>
     </scenes>
     <resources>
         <image name="download-7" width="29" height="30"/>
         <image name="folder-7" width="30" height="30"/>
     </resources>
+    <color key="tintColor" red="0.3562921818279759" green="0.58085937131487941" blue="0.68726851851851856" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

@@ -34,7 +34,7 @@ public class FileParser {
             if let newValue = newValue {
                 _excludesFileExtensions = newValue
             } else {
-                Log.e(withErrorMsg: ErrorMsgs.kFileExtensionsError)
+                Log.ERROR(withErrorMsg: ErrorMsgs.kFileExtensionsError)
             }
         }
     }
@@ -133,7 +133,7 @@ public class FileParser {
         if fileManager == nil {
             setFileManager(toFileManager: Constants.kDefaultFileManager)
         } else {
-            Log.d(withMessage: Constants.kFileManagerAlreadySet)
+            Log.DEBUG(withMessage: Constants.kFileManagerAlreadySet)
         }
     }
     
@@ -148,7 +148,7 @@ public class FileParser {
         if newFileManager != nil {
             fileManager = newFileManager
         } else {
-            Log.e(withErrorMsg: ErrorMsgs.kFileManagerError)
+            Log.ERROR(withErrorMsg: ErrorMsgs.kFileManagerError)
             setFileManager(toFileManager: Constants.kDefaultFileManager)
         }
     }
