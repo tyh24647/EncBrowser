@@ -41,15 +41,12 @@ class DownloadsTableViewController: UITableViewController {
         var cell = tableView.dequeueReusableCell(withIdentifier: kDownloadCell, for: indexPath) as UITableViewCell!
 
         if cell != nil {
-            let cellStr = self.data[indexPath.row]
-
-
-
-            cell?.textLabel!.text = self.data[indexPath.row]
+            cell?.textLabel!.text = self.data[indexPath.row] as String! ?? "(NULL)"
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: kFileCell, for: indexPath)
         }
 
+        return cell ?? UITableViewCell(style: .default, reuseIdentifier: "DownloadCell")
     }
 
     override func viewWillAppear(_ animated: Bool) {
